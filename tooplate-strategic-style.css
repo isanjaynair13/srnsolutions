@@ -42,19 +42,17 @@ body {
 }
 
 .logo {
+	font-size: 1.8rem;
+	font-weight: 700;
+	background: linear-gradient(135deg, #475569, #64748b);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
 	display: flex;
 	align-items: center;
 	gap: 0.8rem;
 	text-decoration: none;
 	transition: all 0.3s ease;
-}
-
-.logo img {
-	height: 48px;
-	width: auto;
-	border-radius: 6px;
-	object-fit: contain;
-	display: block;
 }
 
 .logo:hover {
