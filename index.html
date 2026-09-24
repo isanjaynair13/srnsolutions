@@ -34,6 +34,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                 <li><a href="#team">Why Us</a></li>
                 <li><a href="#testimonials">Clients</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#apply">Apply</a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -398,6 +399,101 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
         </div>
     </section>
 
+    <!-- Apply Section -->
+    <section id="apply" class="contact">
+        <div class="section">
+            <h2 class="section-title fade-in">Candidate Application</h2>
+            <div class="contact-content">
+                <p>If you are looking for the next career change — SRN Solutions is ready to help. Reach out to start a no-obligation discovery conversation.</p>
+                <form class="contact-form fade-in" id="candidateApplicationForm" action="mailto:info@srnsolutions.ca" method="post" enctype="text/plain" data-netlify="true">
+                    <div class="form-group">
+                        <input type="text" name="firstName" placeholder="First Name *" required>
+                        <input type="text" name="lastName" placeholder="Last Name *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="preferredName" placeholder="Preferred Name">
+                        <input type="email" name="email" placeholder="Email Address *" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="cellPhone" placeholder="Cell Phone *" required>
+                        <input type="tel" name="homePhone" placeholder="Home Phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="linkedinUrl" placeholder="LinkedIn URL *" required>
+                        <input type="text" name="location" placeholder="Location (City / Province) *" required>
+                    </div>
+                    <input type="text" name="currentEmployer" placeholder="Current Employer">
+                    <div class="form-group">
+                        <input type="text" name="currentTotalCompensation" placeholder="Current Total Compensation">
+                        <input type="text" name="expectedCompensation" placeholder="Expected Compensation">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="noticePeriod" placeholder="Notice Period">
+                        <input type="date" name="earliestStartDate" placeholder="Earliest Start Date">
+                    </div>
+                    <select name="specialization" style="width:100%;padding:15px;margin-bottom:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#cbd5e1;font-size:14px;">
+                        <option value="" disabled selected style="color:#64748b;">Specialization</option>
+                        <option value="technology_leadership">Technology Leadership — IT / Cloud / Enterprise Architecture / Technology Operations</option>
+                        <option value="transformation_delivery">Transformation & Delivery — Digital Transformation / Program Management / PMO / Enterprise Delivery</option>
+                        <option value="client_commercial">Client & Commercial Technology Leadership — Client Partners / Professional Services / Customer Success / Strategic Accounts</option>
+                        <option value="bss_oss">Telecom / BSS-OSS domain experience</option>
+                        <option value="other">Other Specialization</option>
+                    </select>
+                    <select name="workAuthorization" style="width:100%;padding:15px;margin-bottom:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#cbd5e1;font-size:14px;">
+                        <option value="" disabled selected style="color:#64748b;">Work Authorization Status</option>
+                        <option value="citizen">Canadian Citizen</option>
+                        <option value="permanent_resident">Permanent Resident</option>
+                        <option value="client_commercial">Need Work Authorization</option>
+                    </select>
+                    <select name="willingToRelocate" style="width:100%;padding:15px;margin-bottom:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#cbd5e1;font-size:14px;">
+                        <option value="" disabled selected style="color:#64748b;">Willing to Relocate?</option>
+                        <option value="relocate_yes">Yes, Anywhere in Canada</option>
+                        <option value="relocate_specific">Yes , specific location</option>
+                        <option value="relocate_no">No</option>
+                    </select>
+                    <select name="workPreference" style="width:100%;padding:15px;margin-bottom:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#cbd5e1;font-size:14px;">
+                        <option value="" disabled selected style="color:#64748b;">Work Preference - Remote/Hybrid/On-site</option>
+                        <option value="relocate_yes">Yes, Anywhere in Canada</option>
+                        <option value="relocate_specific">Yes , specific location</option>
+                        <option value="relocate_no">No</option>
+                    </select>
+                    <div class="field" style="margin-bottom:16px;">
+                        <label for="resume">Upload Resume (PDF or Word) <span class="required">*</span></label>
+                        <div class="file-field">
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                        </div>
+                        <div class="hint">Max 10MB. PDF preferred.</div>
+                    </div>
+                    <select name="referralSource" style="width:100%;padding:15px;margin-bottom:15px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:#cbd5e1;font-size:14px;">
+                        <option value="" disabled selected style="color:#64748b;">How did you hear about SRN Solutions?</option>
+                        <option value="source_referral">Referral</option>
+                        <option value="source_linkedin">LinkedIn</option>
+                        <option value="source_website">SRN Solutions Website</option>
+                        <option value="source_other">Other</option>
+                    </select>
+                    <input type="text" name="referredBy" placeholder="Referred By (if applicable)">
+                    <textarea name="notes" placeholder="Anything else you'd like us to know?></textarea>
+                    <p>SRN Solutions Inc. collects and holds your personal information (including this form and your resume) to evaluate your fit for roles with SRN's employer clients, in accordance with British Columbia's Personal Information Protection Act (PIPA).</p>
+                        <div class="checkbox-list">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent1" name="consentSharing" value="Yes" required>
+                                <label for="consent1">I consent to SRN Solutions Inc. sharing my resume and discussing my background with employer clients, on a named or unnamed basis, in connection with specific role opportunities. <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent2" name="consentConfirm" value="Yes" required>
+                                <label for="consent2">I understand SRN will not disclose my identity to a specific employer without first confirming that role with me. <span class="required">*</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consent3" name="confirmAccuracy" value="Yes" required>
+                                <label for="consent3">I confirm the information provided in this form is accurate to the best of my knowledge. <span class="required">*</span></label>
+                            </div>
+                        </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -413,5 +509,90 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
     </footer>
 
     <script src="tooplate-strategic-scripts.js"></script>
+    <!-- THE BACKEND LOGIC CHUNK (JAVASCRIPT) -->
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzAYkJw7dOBwhrm-JOrrx-UGVygCXeuFL0AcTe70WBsrJ9sOh00CkmfkcpG831MAuQx1w/exec';
+      const form = document.getElementById('candidateApplicationForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+    
+    // Disable button to prevent double submissions
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting Application...";
+
+        // Helper function to read the resume file and convert it into a Base64 string
+        const getFileData = (fileElement) => {
+            return new Promise((resolve) => {
+                if (!fileElement || !fileElement.files.length) return resolve(null);
+                const file = fileElement.files[0]; // Fixed: targets the selected file correctly
+                const reader = new FileReader();
+                    reader.onload = () => {
+                        const base64String = reader.result.split(',')[1]; // Fixed: extracts only the raw base64 data stream string
+                        resolve({ base64: base64String, name: file.name, type: file.type });
+                    };
+                    reader.readAsDataURL(file);
+                });
+        };
+
+        const fileInput = document.getElementById('resumeFileInput');
+        const uploadedResumeData = await getFileData(fileInput);
+
+        // Map all HTML input elements to structured payload variables matching the Apps Script expectation
+        const payload = {
+            firstName: form.querySelector('[name="firstName"]').value,
+            lastName: form.querySelector('[name="lastName"]').value,
+            preferredName: form.querySelector('[name="preferredName"]').value,
+            email: form.querySelector('[name="email"]').value,
+            cellPhone: form.querySelector('[name="cellPhone"]').value,
+            homePhone: form.querySelector('[name="homePhone"]').value,
+            linkedinUrl: form.querySelector('[name="linkedinUrl"]').value,
+            location: form.querySelector('[name="location"]').value,
+            currentEmployer: form.querySelector('[name="currentEmployer"]').value,
+            currentTotalCompensation: form.querySelector('[name="currentTotalCompensation"]').value,
+            expectedCompensation: form.querySelector('[name="expectedCompensation"]').value,
+            noticePeriod: form.querySelector('[name="noticePeriod"]').value,
+            earliestStartDate: form.querySelector('[name="earliestStartDate"]').value,
+            specialization: form.querySelector('[name="specialization"]').value,
+            workAuthorization: form.querySelector('[name="workAuthorization"]').value,
+            willingToRelocate: form.querySelector('[name="willingToRelocate"]').value,
+            workPreference: form.querySelector('[name="workPreference"]').value,
+            resumeFile: uploadedResumeData, // Attaches the file object (name, data type, and binary string content)
+            referralSource: form.querySelector('[name="referralSource"]').value,
+            referredBy: form.querySelector('[name="referredBy"]').value,
+            notes: form.querySelector('[name="notes"]').value,
+            consentSharing: form.querySelector('[name="consentSharing"]').checked ? "Yes" : "No",
+            consentConfirm: form.querySelector('[name="consentConfirm"]').checked ? "Yes" : "No",
+            confirmAccuracy: form.querySelector('[name="confirmAccuracy"]').checked ? "Yes" : "No"
+        };
+
+        // Send payload to Google Cloud backend
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Explicit plain content type to bypass CORS preflight blocks
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.result === 'success') {
+                alert('Thank you! Your application details have been submitted and logged.');
+                form.reset();
+            } else {
+                alert('Data submission backend logic error: ' + data.error);
+                }
+        })
+        .catch(error => {
+            console.error('Error!', error);
+            alert('An error occurred while connecting to the spreadsheet gateway.');
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Application";
+        });
+    });
+    </script>
+
 </body>
 </html>
