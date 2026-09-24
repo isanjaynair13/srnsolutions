@@ -1168,6 +1168,151 @@ body {
 	box-shadow: 0 15px 30px rgba(100, 116, 139, 0.4);
 }
 
+/* Apply Section - Futuristic Candidate Application Form */
+.apply {
+	background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+	color: white;
+	position: relative;
+	overflow: hidden;
+}
+
+.apply::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+	background-size: 80px 80px;
+	background-position: 0 0, 0 0;
+	animation: applyGridMove 30s linear infinite;
+}
+
+@keyframes applyGridMove {
+	0% {
+		transform: translate(0, 0);
+	}
+
+	100% {
+		transform: translate(80px, 80px);
+	}
+}
+
+@keyframes zigzagMove {
+	0% {
+		transform: translate(0, 0);
+	}
+
+	100% {
+		transform: translate(40px, 40px);
+	}
+}
+
+.apply .section-title {
+	color: white;
+}
+
+.apply-content {
+	max-width: 700px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+.apply p {
+	font-size: 1.3rem;
+	margin-bottom: 3rem;
+	opacity: 0.95;
+	text-align: center;
+}
+
+.apply-form {
+	display: grid;
+	gap: 2rem;
+	margin-top: 4rem;
+}
+
+.apply-form-group {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}
+
+.apply-form input,
+.apply-form textarea {
+	padding: 1.5rem;
+	border: none;
+	border-radius: 20px;
+	font-size: 1rem;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-weight: 400;
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+	transition: all 0.3s ease;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+}
+
+.apply-form input::placeholder,
+.apply-form textarea::placeholder {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.apply-form input:focus,
+.apply-form textarea:focus {
+	outline: none;
+	background: rgba(255, 255, 255, 0.2);
+	border-color: #64748b;
+	box-shadow: 0 0 0 4px rgba(100, 116, 139, 0.2);
+	transform: scale(1.02);
+}
+
+.apply-form textarea {
+	grid-column: 1 / -1;
+	resize: vertical;
+	min-height: 150px;
+	font-family: inherit;
+}
+
+.apply-btn {
+	background: linear-gradient(135deg, #64748b, #475569);
+	color: white;
+	padding: 1.5rem 3rem;
+	border: none;
+	border-radius: 50px;
+	font-size: 1.1rem;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.4s ease;
+	justify-self: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.apply-btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	transition: left 0.5s ease;
+}
+
+.apply-btn:hover::before {
+	left: 100%;
+}
+
+.apply-btn:hover {
+	transform: translateY(-3px) scale(1.05);
+	box-shadow: 0 15px 30px rgba(100, 116, 139, 0.4);
+}
+
+
 /* Mobile Styles */
 @media (max-width: 1000px) {
 	.about {
