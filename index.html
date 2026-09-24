@@ -414,7 +414,10 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                 </div>
                 <div class="apply-form-group" style="margin-top: 2rem;">
                     <input type="text" name="linkedinUrl" placeholder="LinkedIn URL *" required>
-                    <input type="text" name="location" placeholder="Location (City / Province) *" required>
+                    <div class="autocomplete-wrapper" style="position: relative;">
+                        <input type="text" id="locationInput" name="location" placeholder="Location (City / Province) *" required autocomplete="off">
+                        <ul id="locationSuggestions" class="suggestions-list" style="display: none;"></ul>
+                    </div>
                 </div>
                 <div class="apply-form-group" style="margin-top: 2rem;">
                     <input type="text" name="currentEmployer" placeholder="Current Employer">
@@ -426,6 +429,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                 <div class="apply-form-group" style="margin-top: 2rem;">
                     <input type="text" name="noticePeriod" placeholder="Notice Period">
                     <input type="date" name="earliestStartDate" placeholder="Earliest Start Date">
+                    <label for="earliestStartDate">Earliest Start Date <span class="required">*</span></label>
                 </div>
                 <div class="apply-form-group" style="margin-top: 2rem;">
                     <div>
@@ -663,6 +667,84 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                         applyBtn.innerText = "Submit Application";
                     }
                 });
+            });
+        }
+        
+        // OpenStreetMap
+        let debounceTimer;
+        
+        const locationInput = document.getElementById('locationInput');
+        const suggestionsList = document.getElementById('locationSuggestions');
+        
+        if (locationInput && suggestionsList) {
+            locationInput.addEventListener('input', function () {
+                const query = this.value.trim();
+                clearTimeout(debounceTimer);
+        
+                // Clear suggestions if query is less than 3 characters
+                if (query.length < 3) {
+                    suggestionsList.style.display = 'none';
+                    suggestionsList.innerHTML = '';
+                    return;
+                }
+        
+                // Wait 300ms after user stops typing before making request
+                debounceTimer = setTimeout(() => {
+                    fetchLocationSuggestions(query);
+                }, 300);
+            });
+        
+            // Close suggestions dropdown when clicking anywhere outside
+            document.addEventListener('click', function (e) {
+                if (!locationInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+                    suggestionsList.style.display = 'none';
+                }
+            });
+        }
+        
+        function fetchLocationSuggestions(query) {
+            // OpenStreetMap Nominatim endpoint filtering for settlements (cities/towns)
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&addressdetails=1&limit=5&featureType=settlement`;
+        
+            fetch(url, {
+                headers: {
+                    'Accept-Language': 'en'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                suggestionsList.innerHTML = '';
+                if (!data || data.length === 0) {
+                    suggestionsList.style.display = 'none';
+                    return;
+                }
+        
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    const addr = item.address || {};
+        
+                    // Parse City, State/Province, and Country
+                    const city = addr.city || addr.town || addr.village || addr.municipality || item.display_name.split(',')[0];
+                    const state = addr.state || addr.region || '';
+                    const country = addr.country || '';
+        
+                    const formattedLocation = [city, state, country].filter(Boolean).join(', ');
+        
+                    li.textContent = formattedLocation;
+                    
+                    // Populate input field on click
+                    li.addEventListener('click', function () {
+                        locationInput.value = formattedLocation;
+                        suggestionsList.style.display = 'none';
+                    });
+        
+                    suggestionsList.appendChild(li);
+                });
+        
+                suggestionsList.style.display = 'block';
+            })
+            .catch(err => {
+                console.error('Error fetching OpenStreetMap suggestions:', err);
             });
         }
     </script>
