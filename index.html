@@ -372,7 +372,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
             <h2 class="section-title fade-in">Let's Start the Conversation</h2>
             <div class="contact-content">
                 <p>Whether you are looking to modernize your Telecom stack, find specialized talent, or navigate a critical technology decision — SRN Solutions is ready to help. Reach out to start a no-obligation discovery conversation.</p>
-                <form class="contact-form fade-in" action="mailto:info@srnsolutions.ca" method="post" enctype="text/plain" data-netlify="true">
+                <form class="contact-form fade-in" action="#" method="post">
                     <div class="form-group">
                         <input type="text" name="first_name" placeholder="First Name" required>
                         <input type="text" name="last_name" placeholder="Last Name" required>
@@ -405,7 +405,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
             <h2 class="section-title fade-in">Candidate Application</h2>
             <div class="apply-content">
                 <p>If you are looking for the next career change — SRN Solutions is ready to help. Reach out to start a no-obligation discovery conversation.</p>
-                <form class="apply-form fade-in" id="candidateApplicationForm" action="mailto:info@srnsolutions.ca" method="post" enctype="text/plain" data-netlify="true">
+                <form class="apply-form fade-in" id="candidateApplicationForm" method="post">
                     <div class="apply-form-group">
                         <input type="text" name="firstName" placeholder="First Name *" required>
                         <input type="text" name="lastName" placeholder="Last Name *" required>
@@ -473,22 +473,24 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                     </select>
                     <input type="text" name="referredBy" placeholder="Referred By (if applicable)">
                     <textarea name="notes" placeholder="Anything else you'd like us to know?></textarea>
-                    <p>SRN Solutions Inc. collects and holds your personal information (including this form and your resume) to evaluate your fit for roles with SRN's employer clients, in accordance with British Columbia's Personal Information Protection Act (PIPA).</p>
-                        <div class="checkbox-list">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="consent1" name="consentSharing" value="Yes" required>
-                                <label for="consent1">I consent to SRN Solutions Inc. sharing my resume and discussing my background with employer clients, on a named or unnamed basis, in connection with specific role opportunities. <span class="required">*</span></label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="consent2" name="consentConfirm" value="Yes" required>
-                                <label for="consent2">I understand SRN will not disclose my identity to a specific employer without first confirming that role with me. <span class="required">*</span></label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="consent3" name="confirmAccuracy" value="Yes" required>
-                                <label for="consent3">I confirm the information provided in this form is accurate to the best of my knowledge. <span class="required">*</span></label>
-                            </div>
+                    <div style="grid-column: 1 / -1; margin-top: 15px; margin-bottom: 15px; text-align: left;">
+                        <p>SRN Solutions Inc. collects and holds your personal information (including this form and your resume) to evaluate your fit for roles with SRN's employer clients, in accordance with British Columbia's Personal Information Protection Act (PIPA).</p>
+                        <div style="margin-bottom: 12px;">
+                            <label class="form-check-input" style="font-size: 13px; display: block; margin-bottom: 8px; line-height: 1.4; cursor: pointer;">
+                                <input type="checkbox" name="consentSharing" value="Yes" required style="margin-right: 8px; vertical-align: middle;" /> I consent to SRN Solutions Inc. sharing my resume and discussing my background with employer clients, on a named or unnamed basis, in connection with specific role opportunities. *
+                            </label>
                         </div>
-                    <button type="apply" class="apply-btn" id="applyBtn">Submit Application</button>
+                        <div style="margin-bottom: 12px;">
+                            <label style="font-size: 13px; display: block; margin-bottom: 8px; line-height: 1.4; cursor: pointer;">
+                                <input type="checkbox" name="consentConfirm" value="Yes" required style="margin-right: 8px; vertical-align: middle;" /> I understand SRN will not disclose my identity to a specific employer without first confirming that role with me. *
+                            </label>
+                        </div>
+                            <label style="font-size: 13px; display: block; margin-bottom: 8px; line-height: 1.4; cursor: pointer;">
+                                <input type="checkbox" name="confirmAccuracy" value="Yes" required style="margin-right: 8px; vertical-align: middle;" /> I confirm the information provided in this form is accurate to the best of my knowledge. *
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="apply-btn" id="applyBtn">Submit Application</button>
                 </form>
             </div>
         </div>
@@ -511,87 +513,142 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
     <script src="tooplate-strategic-scripts.js"></script>
     <!-- THE BACKEND LOGIC CHUNK (JAVASCRIPT) -->
     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzAYkJw7dOBwhrm-JOrrx-UGVygCXeuFL0AcTe70WBsrJ9sOh00CkmfkcpG831MAuQx1w/exec';
-      const form = document.getElementById('candidateApplicationForm');
-      const submitBtn = document.getElementById('applyBtn');
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-    
-    // Disable button to prevent double submissions
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Submitting Application...";
-
-        // Helper function to read the resume file and convert it into a Base64 string
-        const getFileData = (fileElement) => {
-            return new Promise((resolve) => {
-                if (!fileElement || !fileElement.files.length) return resolve(null);
-                const file = fileElement.files[0]; // Fixed: targets the selected file correctly
-                const reader = new FileReader();
-                    reader.onload = () => {
-                        const base64String = reader.result.split(',')[1]; // Fixed: extracts only the raw base64 data stream string
-                        resolve({ base64: base64String, name: file.name, type: file.type });
-                    };
-                    reader.readAsDataURL(file);
-                });
-        };
-
-        const fileInput = document.getElementById('resumeFileInput');
-        const uploadedResumeData = await getFileData(fileInput);
-
-        // Map all HTML input elements to structured payload variables matching the Apps Script expectation
-        const payload = {
-            firstName: form.querySelector('[name="firstName"]').value,
-            lastName: form.querySelector('[name="lastName"]').value,
-            preferredName: form.querySelector('[name="preferredName"]').value,
-            email: form.querySelector('[name="email"]').value,
-            cellPhone: form.querySelector('[name="cellPhone"]').value,
-            homePhone: form.querySelector('[name="homePhone"]').value,
-            linkedinUrl: form.querySelector('[name="linkedinUrl"]').value,
-            location: form.querySelector('[name="location"]').value,
-            currentEmployer: form.querySelector('[name="currentEmployer"]').value,
-            currentTotalCompensation: form.querySelector('[name="currentTotalCompensation"]').value,
-            expectedCompensation: form.querySelector('[name="expectedCompensation"]').value,
-            noticePeriod: form.querySelector('[name="noticePeriod"]').value,
-            earliestStartDate: form.querySelector('[name="earliestStartDate"]').value,
-            specialization: form.querySelector('[name="specialization"]').value,
-            workAuthorization: form.querySelector('[name="workAuthorization"]').value,
-            willingToRelocate: form.querySelector('[name="willingToRelocate"]').value,
-            workPreference: form.querySelector('[name="workPreference"]').value,
-            resumeFile: uploadedResumeData, // Attaches the file object (name, data type, and binary string content)
-            referralSource: form.querySelector('[name="referralSource"]').value,
-            referredBy: form.querySelector('[name="referredBy"]').value,
-            notes: form.querySelector('[name="notes"]').value,
-            consentSharing: form.querySelector('[name="consentSharing"]').checked ? "Yes" : "No",
-            consentConfirm: form.querySelector('[name="consentConfirm"]').checked ? "Yes" : "No",
-            confirmAccuracy: form.querySelector('[name="confirmAccuracy"]').checked ? "Yes" : "No"
-        };
-
-        // Send payload to Google Cloud backend
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Explicit plain content type to bypass CORS preflight blocks
-            body: JSON.stringify(payload)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.result === 'success') {
-                alert('Thank you! Your application details have been submitted and logged.');
-                form.reset();
-            } else {
-                alert('Data submission backend logic error: ' + data.error);
+        // ==========================================
+        // 1. CONFIGURATION: TWO WEB APP URLS HERE
+        // ==========================================
+        const contactScriptURL = 'https://script.google.com/macros/s/AKfycbzxkPFS7AlwiSmIVzzFrCq0XRJX9JfuDnVRaL2eWTk7vfJgLBWspsgGVojS40icT_1e/exec';
+        const applyScriptURL = 'https://script.google.com/macros/s/AKfycbzAYkJw7dOBwhrm-JOrrx-UGVygCXeuFL0AcTe70WBsrJ9sOh00CkmfkcpG831MAuQx1w/exec';
+      
+        // ==========================================
+        // 2. CONTACT FORM ROUTER (EMAIL NOTIFICATION ONLY)
+        // ==========================================
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+              
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = "Sending Message...";
                 }
-        })
-        .catch(error => {
-            console.error('Error!', error);
-            alert('An error occurred while connecting to the spreadsheet gateway.');
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Submit Application";
-        });
-    });
+        
+                // Automatically collect the name, email, and message inputs
+                const formData = new FormData(contactForm);
+        
+                fetch(contactScriptURL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert('Thank you! Your message has been sent directly to our team.');
+                        contactForm.reset();
+                    } else {
+                        alert('Submission error: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Contact Form Error:', error);
+                    alert('A network error occurred. Please try again.');
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = "Let's Talk";
+                    }
+                });
+            });
+        }
+        
+        // ==========================================
+        // 3. APPLICATION FORM ROUTER (SHEET + DRIVE + EMAIL ALERT)
+        // ==========================================
+                        
+        const applyForm = document.getElementById('candidateApplicationForm');
+        if (applyForm) {
+            applyForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+      
+                const applyBtn = document.getElementById('applyBtn');
+                if (applyBtn) {
+                    applyBtn.disabled = true;
+                    applyBtn.innerText = "Uploading Application...";
+                }
+                // Helper function to read the resume file and convert it into a Base64 string
+                const getFileData = (fileElement) => {
+                    return new Promise((resolve) => {
+                        if (!fileElement || !fileElement.files.length) return resolve(null);
+                        const file = fileElement.files[0]; // Fixed: targets the selected file correctly
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            const base64String = reader.result.split(',')[1]; // Fixed: extracts only the raw base64 data stream string
+                            resolve({ base64: base64String, name: file.name, type: file.type });
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                };
+
+                const fileInput = document.getElementById('resumeFileInput');
+                const uploadedResumeData = await getFileData(fileInput);
+
+                // Map all HTML input elements to structured payload variables matching the Apps Script expectation
+                const payload = {
+                    firstName: applyForm.querySelector('[name="firstName"]').value,
+                    lastName: applyForm.querySelector('[name="lastName"]').value,
+                    preferredName: applyForm.querySelector('[name="preferredName"]').value,
+                    email: applyForm.querySelector('[name="email"]').value,
+                    cellPhone: applyForm.querySelector('[name="cellPhone"]').value,
+                    homePhone: applyForm.querySelector('[name="homePhone"]').value,
+                    linkedinUrl: applyForm.querySelector('[name="linkedinUrl"]').value,
+                    location: applyForm.querySelector('[name="location"]').value,
+                    currentEmployer: applyForm.querySelector('[name="currentEmployer"]').value,
+                    currentTotalCompensation: applyForm.querySelector('[name="currentTotalCompensation"]').value,
+                    expectedCompensation: applyForm.querySelector('[name="expectedCompensation"]').value,
+                    noticePeriod: applyForm.querySelector('[name="noticePeriod"]').value,
+                    earliestStartDate: applyForm.querySelector('[name="earliestStartDate"]').value,
+                    specialization: applyForm.querySelector('[name="specialization"]').value,
+                    workAuthorization: applyForm.querySelector('[name="workAuthorization"]').value,
+                    willingToRelocate: applyForm.querySelector('[name="willingToRelocate"]').value,
+                    workPreference: applyForm.querySelector('[name="workPreference"]').value,
+                    resumeFile: uploadedResumeData, // Attaches the file object (name, data type, and binary string content)
+                    referralSource: applyForm.querySelector('[name="referralSource"]').value,
+                    referredBy: applyForm.querySelector('[name="referredBy"]').value,
+                    notes: applyForm.querySelector('[name="notes"]').value,
+                    consentSharing: applyForm.querySelector('[name="consentSharing"]').checked ? "Yes" : "No",
+                    consentConfirm: applyForm.querySelector('[name="consentConfirm"]').checked ? "Yes" : "No",
+                    confirmAccuracy: applyForm.querySelector('[name="confirmAccuracy"]').checked ? "Yes" : "No"
+                };
+
+                // Send payload to Google Cloud backend
+                fetch(applyScriptURL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Explicit plain content type to bypass CORS preflight blocks
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert('Thank you! Your application details have been submitted and logged.');
+                        applyForm.reset();
+                    } else {
+                        alert('Hiring database connection issue: ' + data.error);
+                        }
+                })
+                .catch(error => {
+                    console.error('Apply Form Error!', error);
+                    alert('Failed to connect to our application processing engine.');
+                })
+                .finally(() => {
+                    if(applyBtn) {
+                        applyBtn.disabled = false;
+                        applyBtn.innerText = "Submit Application";
+                    }
+                });
+            });
+        }
     </script>
 
 </body>
