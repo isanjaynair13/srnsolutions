@@ -400,34 +400,34 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
     </section>
 
     <!-- Apply Section -->
-    <section id="apply" class="contact">
+    <section id="apply" class="apply">
         <div class="section">
             <h2 class="section-title fade-in">Candidate Application</h2>
-            <div class="contact-content">
+            <div class="apply-content">
                 <p>If you are looking for the next career change — SRN Solutions is ready to help. Reach out to start a no-obligation discovery conversation.</p>
-                <form class="contact-form fade-in" id="candidateApplicationForm" action="mailto:info@srnsolutions.ca" method="post" enctype="text/plain" data-netlify="true">
-                    <div class="form-group">
+                <form class="apply-form fade-in" id="candidateApplicationForm" action="mailto:info@srnsolutions.ca" method="post" enctype="text/plain" data-netlify="true">
+                    <div class="apply-form-group">
                         <input type="text" name="firstName" placeholder="First Name *" required>
                         <input type="text" name="lastName" placeholder="Last Name *" required>
                     </div>
-                    <div class="form-group">
+                    <div class="apply-form-group">
                         <input type="text" name="preferredName" placeholder="Preferred Name">
                         <input type="email" name="email" placeholder="Email Address *" required>
                     </div>
-                    <div class="form-group">
+                    <div class="apply-form-group">
                         <input type="tel" name="cellPhone" placeholder="Cell Phone *" required>
                         <input type="tel" name="homePhone" placeholder="Home Phone">
                     </div>
-                    <div class="form-group">
+                    <div class="apply-form-group">
                         <input type="text" name="linkedinUrl" placeholder="LinkedIn URL *" required>
                         <input type="text" name="location" placeholder="Location (City / Province) *" required>
                     </div>
                     <input type="text" name="currentEmployer" placeholder="Current Employer">
-                    <div class="form-group">
+                    <div class="apply-form-group">
                         <input type="text" name="currentTotalCompensation" placeholder="Current Total Compensation">
                         <input type="text" name="expectedCompensation" placeholder="Expected Compensation">
                     </div>
-                    <div class="form-group">
+                    <div class="apply-form-group">
                         <input type="text" name="noticePeriod" placeholder="Notice Period">
                         <input type="date" name="earliestStartDate" placeholder="Earliest Start Date">
                     </div>
@@ -460,7 +460,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                     <div class="field" style="margin-bottom:16px;">
                         <label for="resume">Upload Resume (PDF or Word) <span class="required">*</span></label>
                         <div class="file-field">
-                            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                            <input type="file" id="resumeFileInput" name="resume" accept=".pdf,.doc,.docx" required>
                         </div>
                         <div class="hint">Max 10MB. PDF preferred.</div>
                     </div>
@@ -488,7 +488,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
                                 <label for="consent3">I confirm the information provided in this form is accurate to the best of my knowledge. <span class="required">*</span></label>
                             </div>
                         </div>
-                    <button type="submit" class="submit-btn">Submit Application</button>
+                    <button type="apply" class="apply-btn" id="applyBtn">Submit Application</button>
                 </form>
             </div>
         </div>
@@ -513,7 +513,7 @@ Customized for SRN Solutions Inc. Vancouver, BC, Canada
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzAYkJw7dOBwhrm-JOrrx-UGVygCXeuFL0AcTe70WBsrJ9sOh00CkmfkcpG831MAuQx1w/exec';
       const form = document.getElementById('candidateApplicationForm');
-      const submitBtn = document.getElementById('submitBtn');
+      const submitBtn = document.getElementById('applyBtn');
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
