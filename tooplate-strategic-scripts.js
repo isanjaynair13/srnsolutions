@@ -208,27 +208,29 @@ window.addEventListener('scroll', () => {
 });
 
 // Enhanced Form submission
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-   e.preventDefault();
 
-   const submitBtn = contactForm.querySelector('.submit-btn');
-   const originalText = submitBtn.textContent;
+//const contactForm = document.querySelector('.contact-form');
+//contactForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
 
-   submitBtn.textContent = 'Initiating Connection...';
-   submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-   submitBtn.classList.add('loading');
+//   const submitBtn = contactForm.querySelector('.submit-btn');
+//   const originalText = submitBtn.textContent;
 
-   setTimeout(() => {
-      submitBtn.textContent = 'Partnership Initiated!';
-      submitBtn.classList.remove('loading');
-      setTimeout(() => {
-         submitBtn.textContent = originalText;
-         submitBtn.style.background = 'linear-gradient(135deg, #64748b, #475569)';
-         contactForm.reset();
-      }, 3000);
-   }, 2000);
-});
+ //  submitBtn.textContent = 'Initiating Connection...';
+//   submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+//   submitBtn.classList.add('loading');
+
+//   setTimeout(() => {
+//      submitBtn.textContent = 'Partnership Initiated!';
+//      submitBtn.classList.remove('loading');
+//      setTimeout(() => {
+//         submitBtn.textContent = originalText;
+//         submitBtn.style.background = 'linear-gradient(135deg, #64748b, #475569)';
+//         contactForm.reset();
+//      }, 3000);
+//   }, 2000);
+//});
+
 
 // Enhanced hover effects for service tabs
 document.querySelectorAll('.service-tab').forEach((tab, index) => {
