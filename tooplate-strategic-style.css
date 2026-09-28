@@ -1575,3 +1575,72 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
 }
+
+/* ==========================================
+   CANDIDATE / APPLY FORM MOBILE RESPONSIVENESS
+   ========================================== */
+
+/* Base Layout Container */
+.apply-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.apply-form {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Base Group Styling */
+.apply-form-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.apply-form-group > input,
+.apply-form-group > select,
+.apply-form-group > div,
+.apply-form-group > .autocomplete-wrapper {
+    flex: 1;
+    width: 100%;
+    min-width: 0; /* Prevents flex children from overflowing on small screens */
+    box-sizing: border-box;
+}
+
+/* Ensure all form elements honor box dimensions */
+.apply-form input,
+.apply-form select,
+.apply-form textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Mobile Screens (768px and below) */
+@media (max-width: 768px) {
+    .apply-form-group {
+        flex-direction: column !important;
+        gap: 12px !important;
+        margin-top: 1rem !important; /* Reduces large 2rem inline top margins on mobile */
+    }
+
+    .apply-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Checkbox & legal disclaimer padding on mobile */
+    .apply-form div[style*="grid-column"] {
+        padding: 0 5px;
+    }
+
+    /* Ensure location autocomplete dropdown fits mobile viewport */
+    .suggestions-list {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}
